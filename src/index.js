@@ -1,21 +1,29 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import { store } from './app/store';
-import { Provider } from 'react-redux';
-import * as serviceWorker from './serviceWorker';
+import React, { Suspense } from "react";
+import ReactDOM from "react-dom";
+import App from "./App";
+import Store from "./data/store";
+import { Provider } from "react-redux";
+import { SnackbarProvider } from "notistack";
+import Fallback from "./components/FallBack";
+
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <App />
+    <Provider store={Store}>
+      <SnackbarProvider
+        maxSnack={6}
+        anchorOrigin={{
+          vertical: "top",
+          horizontal: "right",
+        }}
+        preventDuplicate
+      >
+        <Suspense fallback={<Fallback />}>
+          <App />
+        </Suspense>
+      </SnackbarProvider>
     </Provider>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
-
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+;
