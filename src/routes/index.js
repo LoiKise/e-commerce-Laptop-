@@ -8,6 +8,9 @@ const ScreenLoginDashboard = lazy(() =>
     import("../views/pages/Dashboard/Login")
 );
 const HomePage = lazy(() => import("../views/pages/Home"));
+const LoginPage = lazy(() => import("../views/pages/Login"));
+const CardPage = lazy(() => import("../views/pages/ShoppingCard"))
+const DetailPage = lazy(() => import("../views/pages/Detail/detail.js"))
 
 const index = [
     {
@@ -34,6 +37,33 @@ const index = [
         main: () => (
             <Suspense key={index} fallback={<Fallback />}>
                 <HomePage />
+            </Suspense>
+        ),
+    },
+    {
+        path: "/detail",
+        exact: true,
+        main: () => (
+            <Suspense key={index} fallback={<Fallback />}>
+                <DetailPage />
+            </Suspense>
+        ),
+    },
+    {
+        path: "/Card",
+        exact: true,
+        main: () => (
+            <Suspense key={index} fallback={<Fallback />}>
+                <CardPage />
+            </Suspense>
+        ),
+    },
+    {
+        path: "/login",
+        exact: true,
+        main: () => (
+            <Suspense key={index} fallback={<Fallback />}>
+                <LoginPage />
             </Suspense>
         ),
     },

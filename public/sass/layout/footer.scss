@@ -1,0 +1,110 @@
+.footer {
+  background: rgba(0, 0, 0, 0.884);
+  padding: 50px;
+  > div {
+    display: flex;
+    justify-content: space-around;
+  }
+  .footer-address {
+    h2 {
+      color: #fff;
+      font-size: 25px;
+    }
+    .footer-content {
+      &-address {
+        span {
+          color: #fff;
+        }
+        p {
+          color: #959595;
+          margin: 15px 0 !important;
+        }
+      }
+      &-email {
+        display: flex;
+        gap: 5px;
+        margin: 15px 0;
+        border-bottom: 1px solid #959595;
+        padding: 15px 0;
+        span {
+          color: #fff;
+        }
+        p {
+          color: #959595;
+        }
+      }
+      &-hotline {
+        display: flex;
+        gap: 5px;
+        margin: 15px 0;
+        padding: 15px 0;
+        border-bottom: 1px solid #959595;
+        span {
+          color: #fff;
+        }
+        p {
+          color: #959595;
+        }
+      }
+      &-contact {
+        color: #959595;
+        margin: 15px 0;
+        padding: 15px 0;
+        border-bottom: 1px solid #959595;
+      }
+      &-introduce {
+        color: #959595;
+        margin: 15px 0;
+        padding: 15px 0;
+        border-bottom: 1px solid #959595;
+      }
+    }
+  }
+  .footer-support {
+    h2 {
+      color: #fff;
+      font-size: 25px;
+    }
+    li::marker {
+      color: #fff;
+    }
+    li {
+      color: #959595;
+      padding: 15px 0;
+      border-bottom: 1px solid #959595;
+    }
+  }
+  &-policy {
+    h2 {
+      color: #fff;
+      font-size: 25px;
+    }
+    li::marker {
+      color: #fff;
+    }
+    li {
+      color: #959595;
+      padding: 15px 0;
+      border-bottom: 1px solid #959595;
+    }
+  }
+  &-service {
+    h2 {
+      color: #fff;
+      font-size: 25px;
+    }
+
+    li {
+      color: #959595;
+      padding: 15px 0;
+      border-bottom: 1px solid #959595;
+    }
+  }
+}
+
+// scroll to top
+.scroll-btn {
+  position: fixed;
+  bottom: 180px;
+  right: 56px;
+}

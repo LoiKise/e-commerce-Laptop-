@@ -1,8 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-// import homeReducer from "./endUser/Home/HomeSlice";
+//import userReducer from "./slices/userSlice";
+
 const Store = configureStore({
     reducer: {
-        // home: homeReducer
+        ///  user: userReducer,
     },
     devTools: process.env.NODE_ENV === "development",
     middleware: (getDefaultMiddleware) => [

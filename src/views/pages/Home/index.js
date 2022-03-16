@@ -1,13 +1,14 @@
 import React, { useEffect } from "react";
 import Banner from "../../../components/EndUser/Home/Banner/Banner";
-
+import Products from "../../../components/EndUser/Home/Products/Products";
 
 
 export default function index() {
-    console.log('first,')
+
     return (
         <main className="home">
             <Banner />
+            <Products />
         </main>
     );
 }
