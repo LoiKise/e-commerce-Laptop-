@@ -1,5 +1,8 @@
 .login {
   margin-top: 2rem;
+  height: 100vh;
+  display: flex;
+  align-items: center;
   &__row {
     display: flex;
     flex: 1;

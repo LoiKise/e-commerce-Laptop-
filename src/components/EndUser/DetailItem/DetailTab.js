@@ -37,6 +37,16 @@ export default function DetailTab() {
                     {
                         tab === 1 && (
                             <ul>
+                                <li>333333</li>
+                                <li>333333</li>
+                                <li>333333</li>
+                                <li>333333</li>
+                            </ul>
+                        )
+                    }
+                    {
+                        tab === 2 && (
+                            <ul>
                                 <li>cccccc</li>
                                 <li>cccccc</li>
                                 <li>cccccc</li>
@@ -44,7 +54,6 @@ export default function DetailTab() {
                             </ul>
                         )
                     }
-
                 </div>
             </div>
         </div>
