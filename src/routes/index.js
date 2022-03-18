@@ -11,6 +11,7 @@ const HomePage = lazy(() => import("../views/pages/Home"));
 const LoginPage = lazy(() => import("../views/pages/Login"));
 const CardPage = lazy(() => import("../views/pages/ShoppingCard"))
 const DetailPage = lazy(() => import("../views/pages/Detail/detail.js"))
+const RegisterPage = lazy(() => import("../views/pages/Register"))
 
 const index = [
     {
@@ -64,6 +65,15 @@ const index = [
         main: () => (
             <Suspense key={index} fallback={<Fallback />}>
                 <LoginPage />
+            </Suspense>
+        ),
+    },
+    {
+        path: "/register",
+        exact: true,
+        main: () => (
+            <Suspense key={index} fallback={<Fallback />}>
+                <RegisterPage />
             </Suspense>
         ),
     },
