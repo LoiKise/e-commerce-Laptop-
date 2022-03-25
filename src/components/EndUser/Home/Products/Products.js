@@ -69,16 +69,6 @@ export default function Products() {
         },
     ])
 
-    const banner = [
-        {
-            id: 0,
-            img: "banner1"
-        },
-        {
-            id: 1,
-            img: "banner2"
-        },
-    ]
 
     // const getListImac = () => {
     //     setListImac(product.filter(i => i.category === 'IMAC'))

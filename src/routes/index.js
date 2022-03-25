@@ -3,10 +3,13 @@ import Fallback from "../components/FallBack";
 const PageNotFound = lazy(() =>
     import("../views/pages/PageNotFound")
 );
-const ScreenDashboard = lazy(() => import("../views/pages/Dashboard"));
+
 const ScreenLoginDashboard = lazy(() =>
     import("../views/pages/Dashboard/Login")
 );
+
+const ScreenDashboard = lazy(() => import("../views/pages/Dashboard"));
+
 const HomePage = lazy(() => import("../views/pages/Home"));
 const LoginPage = lazy(() => import("../views/pages/Login"));
 const CardPage = lazy(() => import("../views/pages/ShoppingCard"))
