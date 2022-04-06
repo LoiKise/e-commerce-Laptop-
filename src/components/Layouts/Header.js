@@ -3,13 +3,32 @@ import { Container, NavDropdown } from 'react-bootstrap'
 import imgLogo from "../../assets/Logo/logo.png"
 import { Nav, Navbar } from "react-bootstrap";
 import HeaderNavItem from './HeaderNavItem';
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import classNames from "classname";
+import { ACCESS_TOKEN } from "../../utils/constant"
+import { useDispatch, useSelector } from "react-redux";
+import { logout, profile } from '../../data/userSlice';
+import { toast } from 'react-toastify';
 
 
 export default function Header({ isHome }) {
 
     const [colorChange, setColorChange] = useState(false)
+
+    const user = useSelector((state) => state.user.user);
+    console.log({ user })
+    const history = useHistory();
+    const dispatch = useDispatch();
+
+    const handleLogout = () => {
+        dispatch(logout());
+        history.push("/");
+        toast.success("Đăng xuất thành công", {
+            position: "top-center",
+            autoClose: 3000,
+        });
+    };
+
 
     useEffect(() => {
         const changeNavbarColor = () => {
@@ -70,14 +89,20 @@ export default function Header({ isHome }) {
             icon: ''
         },
     ]
-
+    useEffect(() => {
+        let _token = ACCESS_TOKEN();
+        if (_token) {
+            dispatch(profile());
+        } else {
+            dispatch(logout());
+        }
+    }, []);
 
     return (
         <div className='header w-100'>
             <div className='header-top '>
                 <div className='header-top-logo'>
                     <Link to="/">
-
                         <img className='logo-menu' src={imgLogo} alt="logo" />
                     </Link>
                 </div>
@@ -93,10 +118,32 @@ export default function Header({ isHome }) {
                         </Link>
                     </div>
                     <div className='chosse-account'>
-                        <ion-icon name="person-outline"></ion-icon>
-                        <Link to="/Login">
-                            <span>Tài Khoản</span>
-                        </Link>
+                        {
+                            Object.keys(user).length === 0 ? (
+                                <>
+                                    <ion-icon name="person-outline"></ion-icon>
+                                    <Link to="/Login" type='submit'>
+                                        <span>Tài Khoản</span>
+                                    </Link>
+                                </>
+                            ) : (
+                                <div className="user-login">
+                                    <span>{user.fullName}</span>
+                                    <div className="background-icon">
+                                        <ul className="dropdown-login">
+                                            <Link to="">
+                                                <li className="dropdown-login-content">
+                                                    Thông tin cá nhân
+                                                </li>
+                                            </Link>
+                                            <li onClick={handleLogout} className="dropdown-login-content">
+                                                Đăng xuất
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            )
+                        }
                     </div>
                 </div>
             </div>
@@ -116,6 +163,6 @@ export default function Header({ isHome }) {
                     </Navbar>
                 </div>
             </div>
-        </div>
+        </div >
     )
 }

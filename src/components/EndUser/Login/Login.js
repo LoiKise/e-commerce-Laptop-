@@ -14,8 +14,6 @@ import {
 } from "../../../data/userSlice";
 import { toast } from "react-toastify";
 
-import { unwrapResult } from "@reduxjs/toolkit";
-import requestAPI from "../../../apis";
 
 
 function Login() {
@@ -39,31 +37,23 @@ function Login() {
             userName: data.userName,
             passWord: data.passWord.trim(),
         };
-
-
-        try {
-            const res = await requestAPI("/user/signin", "POST", body)
-            dispatch(login(res.data));
-            history.push("/");
-            toast.success("Đăng nhập thành công", {
-                position: "top-center",
-                autoClose: 3000,
-            });
-
-        } catch (error) {
-            if (error.response.status === 400) {
+        const res = await dispatch(login(body))
+        if (res) {
+            if (res.payload.response?.status === 400) {
                 toast.error("Tài khoản hoặc mật khẩu không đúng", {
                     position: "top-center",
                     autoClose: 3000,
                 });
             }
-            console.log(error.response.status)
+            else {
+                history.push("/");
+                toast.success("Đăng nhập thành công", {
+                    position: "top-center",
+                    autoClose: 3000,
+                });
+            }
         }
-
     };
-
-
-
 
     return (
         <div className="login container">
