@@ -2,22 +2,20 @@ import React from "react";
 import { Controller, useForm } from "react-hook-form";
 import { Link, useHistory } from "react-router-dom";
 import { rules } from "../../../helpers/rules";
-//import ErrorMessage from "../ErrorMessage";
+import ErrorMessage from "../ErrorMessage";
 import IconFace from "../../../assets/Logo/icon_face.png";
 import IconGG from "../../../assets/Logo/icon_gg.png";
 import Logo from "../../../assets/Logo/logo.png";
 import GoogleLogin from "react-google-login";
 import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
 import { useDispatch } from "react-redux";
-// import {
-//     getProfile,
-//     login,
-//     loginAuth,
-//     profile,
-// } from "../../../data/slices/userSlice";
+import {
+    login,
+} from "../../../data/userSlice";
 import { toast } from "react-toastify";
 
 import { unwrapResult } from "@reduxjs/toolkit";
+import requestAPI from "../../../apis";
 
 
 function Login() {
@@ -31,87 +29,41 @@ function Login() {
         formState: { errors },
     } = useForm({
         defaultValues: {
-            email: "",
-            password: "",
+            userName: "",
+            passWord: "",
         },
     });
 
-    // const handleSubmitForm = async (data) => {
-    //     const body = {
-    //         email: data.email,
-    //         password: data.password.trim(),
-    //     };
-    //     const res = await dispatch(login(body));
-    //     if (res) {
-    //         if (res.payload.response?.status === 404) {
-    //             toast.error("Tài khoản không tồn tại", {
-    //                 position: "top-center",
-    //                 autoClose: 3000,
-    //             });
-    //         } else if (res.payload.response?.status === 400) {
-    //             toast.error("Tài khoản hoặc mật khẩu không đúng", {
-    //                 position: "top-center",
-    //                 autoClose: 3000,
-    //             });
-    //         } else {
-    //             history.push("/");
-    //             toast.success("Đăng nhập thành công", {
-    //                 position: "top-center",
-    //                 autoClose: 3000,
-    //             });
-    //         }
-    //     } else {
-    //         history.push(res.message, {
-    //             position: "top-center",
-    //             autoClose: 3000,
-    //         });
-    //     }
-    // };
-
-    //login GG
-    // const responseGoogle = async (response) => {
-    //     const body = {
-    //         user: {
-    //             name: `${response.profileObj.givenName} ${response.profileObj.familyName}`,
-    //         },
-    //         token: response.accessToken,
-    //     };
-    //     try {
-    //         const res = await dispatch(loginAuth(body));
-    //         unwrapResult(res);
-    //         history.push("/");
-    //         toast.success("Đăng nhập thành công", {
-    //             position: "top-center",
-    //             autoClose: 3000,
-    //         });
-    //     } catch (error) {
-    //         console.log(error);
-    //     }
-    // };
-
-    //login Face
-    const responseFacebook = async (response) => {
-        if (response.name === undefined && response.accessToken === undefined) {
-            return;
-        }
+    const handleSubmitForm = async (data) => {
         const body = {
-            user: {
-                name: response.name,
-            },
-            token: response.accessToken,
+            userName: data.userName,
+            passWord: data.passWord.trim(),
         };
-        // try {
-        //     const res = await dispatch(loginAuth(body));
-        //     unwrapResult(res);
-        //     history.push("/");
-        //     toast.success("Đăng nhập thành công", {
-        //         position: "top-center",
-        //         autoClose: 3000,
-        //     });
-        // } catch (error) {
-        //     console.log(error);
-        // }
+
+
+        try {
+            const res = await requestAPI("/user/signin", "POST", body)
+            dispatch(login(res.data));
+            history.push("/");
+            toast.success("Đăng nhập thành công", {
+                position: "top-center",
+                autoClose: 3000,
+            });
+
+        } catch (error) {
+            if (error.response.status === 400) {
+                toast.error("Tài khoản hoặc mật khẩu không đúng", {
+                    position: "top-center",
+                    autoClose: 3000,
+                });
+            }
+            console.log(error.response.status)
+        }
+
     };
+
+
+
 
     return (
         <div className="login container">
@@ -146,7 +98,7 @@ function Login() {
                             appId="938714423387147"
                             autoLoad={false}
                             fields="name,email,picture"
-                            callback={responseFacebook}
+                            //callback={responseFacebook}
                             render={(renderProps) => (
                                 <button
                                     onClick={renderProps.onClick}
@@ -161,34 +113,34 @@ function Login() {
                         />
                     </div>
                     <div className="login__input">
-                        <form action="#" >
+                        <form onSubmit={handleSubmit(handleSubmitForm)}>
                             <div className="form-group login__input--form">
                                 <label for="form-group-account" className="font-weight-bold">
                                     Đăng nhập
                                 </label>
                                 <Controller
-                                    name="email"
+                                    name="userName"
                                     control={control}
-                                    rules={rules.email}
+                                    rules={rules.username}
                                     render={({ field }) => (
                                         <input
                                             type="text"
                                             className="form-control"
                                             id="form-group-account"
                                             onChange={field.onChange}
-                                            value={getValues("email")}
+                                            value={getValues("userName")}
                                         />
                                     )}
                                 />
                             </div>
-                            {/* <ErrorMessage name="email" errors={errors} /> */}
+                            <ErrorMessage name="userName" errors={errors} />
 
                             <div className="form-group login__input--form">
                                 <label for="form-group-password" className="font-weight-bold">
-                                    Quên mật khẩu
+                                    Mật khẩu
                                 </label>
                                 <Controller
-                                    name="password"
+                                    name="passWord"
                                     control={control}
                                     rules={rules.password}
                                     render={({ field }) => (
@@ -197,16 +149,16 @@ function Login() {
                                             className="form-control"
                                             id="form-group-password"
                                             onChange={field.onChange}
-                                            value={getValues("password")}
+                                            value={getValues("passWord")}
                                         />
                                     )}
                                 />
                             </div>
-                            {/* <ErrorMessage name="password" errors={errors} /> */}
+                            <ErrorMessage name="password" errors={errors} />
 
                             <div className="text-right mb-3">
                                 <Link to="#" className="forgot-password">
-                                    mật khẩu
+                                    Quên mật khẩu
                                 </Link>
                             </div>
                             <button type="submit" className="submit-form">

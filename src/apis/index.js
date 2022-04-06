@@ -3,7 +3,7 @@ import { ACCESS_TOKEN } from "../utils/constant.js";
 
 // Syntax
 export default async function requestAPI(url, method, body) {
-    const urlOrigin = "https://mass-database.herokuapp.com/api/v1";
+    const urlOrigin = "http://localhost:5000/api/v1";
     const headers = {
         "Content-Type": "application/json",
         "Access-Control-Allow-Origin": "*",

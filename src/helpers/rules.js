@@ -1,11 +1,10 @@
 export const rules = {
-    fullname: {
+    username: {
         required: {
             value: true,
-            message: "Họ và Tên là bắt buộc nhập",
+            message: "tài khoản còn trống",
         },
         maxLength: {
-            value: 160,
             message: "Tên có độ dài tối đa là 160 ký tự",
         },
         validate: {
