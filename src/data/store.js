@@ -1,9 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-//import userReducer from "./slices/userSlice";
+import userReducer from "./userSlice";
 
 const Store = configureStore({
     reducer: {
-        ///  user: userReducer,
+        user: userReducer,
     },
     devTools: process.env.NODE_ENV === "development",
     middleware: (getDefaultMiddleware) => [

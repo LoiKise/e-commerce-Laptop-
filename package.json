@@ -43,7 +43,7 @@
     "@fortawesome/react-fontawesome": "^0.1.16"
   },
   "scripts": {
-    "start": "set PORT=3006 && react-scripts start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "sasstocss": "node-sass ./public/sass/index.scss ./public/css/index.css -w",
     "test": "react-scripts test",
