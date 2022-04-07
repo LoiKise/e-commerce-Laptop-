@@ -8,9 +8,9 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import DashboardTotalCount from "./DashboardTotalCount";
 import DashboardTopFive from "./DashboardTopFive";
-// import requestAPI from "../../../../apis";
+
 import { CircularProgress } from "@mui/material";
-// import { getReportByCountry } from "../../../../apis";
+
 
 export default function DashboardMain() {
     const [confirmed, setConfirmed] = useState(null);
@@ -19,18 +19,6 @@ export default function DashboardMain() {
     const [Recovered, setRecovered] = useState(null);
 
 
-
-    // useEffect(() => {
-
-    //     getReportByCountry('vn').then((res) => {
-    //         // xóa đi phần tử cuối cùng trong res.data		
-    //         // res.data.pop();
-    //         setConfirmed(res.data[res.data.length - 1].Confirmed);
-    //         setDeaths(res.data[res.data.length - 1].Deaths);
-    //         setActive(res.data[res.data.length - 1].Active);
-    //         setRecovered(res.data[res.data.length - 1].Recovered);
-    //     })
-    // }, []);
     const totalCount = [
         {
             id: 1,

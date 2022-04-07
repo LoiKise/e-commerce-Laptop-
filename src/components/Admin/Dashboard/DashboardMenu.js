@@ -7,7 +7,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import classNames from "classnames";
 import { Tooltip, Zoom } from "@mui/material";
-// import LOGO from "../../../Assets/Logo/COVID-19-icon-2FINAL.png";
+import LOGO from "../../../assets/Logo/logo.png";
 export default function DashboardMenu(props) {
     const [openUserOpt, setOpenUserOpt] = useState(false);
     const [hideText, setHideText] = useState(false);
@@ -39,9 +39,9 @@ export default function DashboardMenu(props) {
             <div className="db-menu">
                 <div
                     className="db-menu-logo flex"
-                    style={{ justifyContent: "center", alignItems: "center" }}
+                    style={{ justifyContent: "center", alignItems: "center", width: '30%' }}
                 >
-                    {/* <img alt="Logo" src="" className="dashboard-logo"></img> */}
+                    <img alt="Logo" src={LOGO} className="dashboard-logo"></img>
                     {hideText === false && (
                         <div
                             className="flex-center"
