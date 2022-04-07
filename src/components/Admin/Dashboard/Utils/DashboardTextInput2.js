@@ -28,7 +28,7 @@ export default function DashboardTextInput({
     }
   };
   return (
-    <div className="create-box-row2">
+    <div className="create-box-row2" style={{ marginBottom: "20px" }}>
       {!none && (
         <div className="dashboard-left2 flex">
           {title} {isRequire ? <span style={{ color: "red" }}>*</span> : null}

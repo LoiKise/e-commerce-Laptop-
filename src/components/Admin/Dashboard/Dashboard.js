@@ -6,10 +6,9 @@ import {
     faUsers,
 } from "@fortawesome/free-solid-svg-icons";
 import { withRouter } from "react-router-dom";
-// import requestAPI from "../../../apis";
 import { useHistory } from "react-router";
-// import { ACCESS_TOKEN } from "./../../../utils/constant";
 import { useSnackbar } from "notistack";
+import { ACCESS_TOKEN } from "../../../utils/constant";
 function Dashboard() {
     const menuItems = [
         {
@@ -46,11 +45,29 @@ function Dashboard() {
     const [orderNotice] = useState(null);
     const [userInfo, setUserInfo] = useState(null);
     const history = useHistory();
+    const { enqueueSnackbar } = useSnackbar();
     // const { enqueueSnackbar } = useSnackbar();
     //call api get info user
     const setTabIdOnClick = (id) => {
         setTabId(id);
     };
+
+
+    const verifyToken = useCallback(async () => {
+        if (!ACCESS_TOKEN()) {
+            history.push('/dashboard')
+            enqueueSnackbar('Đã phát hiện lỗi truy cập, vui lòng đăng nhập lại', {
+                persist: false,
+                variant: 'error',
+                preventDuplicate: true,
+                autoHideDuration: 3000,
+            })
+        }
+    })
+
+    useEffect(() => {
+        verifyToken()
+    }, [verifyToken])
 
     const setOpenMenuOnClick = () => {
         if (window.innerWidth <= 1110) {

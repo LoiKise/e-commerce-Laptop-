@@ -5,7 +5,7 @@ const PageNotFound = lazy(() =>
 );
 
 const ScreenLoginDashboard = lazy(() =>
-    import("../views/pages/Dashboard/Login")
+    import("../components/Admin/Login/Login.js")
 );
 
 const ScreenDashboard = lazy(() => import("../views/pages/Dashboard"));
@@ -26,6 +26,15 @@ const index = [
             </Suspense>
         ),
     },
+    // {
+    //     path: "/dashboard",
+    //     exact: true,
+    //     main: () => (
+    //         <Suspense key={index} fallback={<Fallback />}>
+    //             <ScreenLoginDashboard />
+    //         </Suspense>
+    //     ),
+    // },
     {
         path: "/dashboard",
         exact: true,
