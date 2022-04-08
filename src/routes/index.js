@@ -28,7 +28,7 @@ const index = [
         ),
     },
     {
-        path: "/category",
+        path: "/category/:id",
         exact: true,
         main: () => (
             <Suspense key={index} fallback={<Fallback />}>

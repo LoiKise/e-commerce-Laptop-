@@ -165,3 +165,20 @@
     z-index: 9999;
   }
 }
+
+.user_login {
+  background-color: transparent;
+  outline: none;
+  border: none;
+  z-index: 9999;
+  :focus {
+    background-color: transparent;
+    outline: none;
+    border: none;
+    box-shadow: none;
+    border: 1px solid transparent;
+  }
+}
+.show > .btn-primary.dropdown-toggle:focus {
+  box-shadow: none !important;
+}

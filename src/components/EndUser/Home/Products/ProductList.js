@@ -4,7 +4,7 @@ import banner2 from "../../../../assets/Banner/banner_imac_trang_chu.jpg"
 import ProductItem from "./ProductItem"
 
 function ProductList({ product, type }) {
-    console.log('ádasdasd', product[0])
+
     return (
         <div className='bg-banner'>
             <div className='container'>

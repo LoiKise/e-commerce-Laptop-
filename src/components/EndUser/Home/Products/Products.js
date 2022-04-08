@@ -69,7 +69,7 @@ export default function Products() {
         })
     }, [product])
 
-    console.log({ product });
+
     return (
         <React.Fragment>
             <ProductList product={listImac} type='IMAC' />

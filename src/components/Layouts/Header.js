@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Container, NavDropdown } from 'react-bootstrap'
+import { Container, Dropdown, NavDropdown } from 'react-bootstrap'
 import imgLogo from "../../assets/Logo/logo.png"
 import { Nav, Navbar } from "react-bootstrap";
 import HeaderNavItem from './HeaderNavItem';
@@ -48,19 +48,22 @@ export default function Header({ isHome }) {
             icon: 'home-outline'
         },
         {
-            name: 'Iphone',
+            name: 'MacBook',
             link: '/',
-            icon: ''
+            icon: '',
+            category: "Apple"
         },
         {
-            name: 'Ipad',
+            name: 'Imac',
             link: '/',
-            icon: ''
+            icon: '',
+            category: 'IMAC'
         },
         {
-            name: 'Mac',
+            name: 'Thinkpad',
             link: '/',
-            icon: ''
+            icon: '',
+            category: 'Laptop'
         },
         {
             name: 'Apple Wach',
@@ -127,19 +130,19 @@ export default function Header({ isHome }) {
                                 </>
                             ) : (
                                 <div className="user-login">
-                                    <span>{user.fullName}</span>
-                                    <div className="background-icon">
-                                        <ul className="dropdown-login">
-                                            <Link to="">
-                                                <li className="dropdown-login-content">
-                                                    Thông tin cá nhân
-                                                </li>
-                                            </Link>
-                                            <li onClick={handleLogout} className="dropdown-login-content">
-                                                Đăng xuất
-                                            </li>
-                                        </ul>
-                                    </div>
+                                    <Dropdown>
+                                        <Dropdown.Toggle className='user_login' id="dropdown-basic" style={{ backgroundColor: 'transparent', outline: 'none', border: 'none' }}>
+                                            <img src="https://picsum.photos/200/300" alt="login" style={{ width: "36px", height: '36px', borderRadius: '200%' }} />
+                                        </Dropdown.Toggle>
+
+                                        <Dropdown.Menu style={{ position: 'absolute', zIndex: '999999999999999' }}>
+                                            <Dropdown.Item>
+                                                {user.fullName}
+                                            </Dropdown.Item>
+                                            <Dropdown.Item href="#/action-2">Trang cá nhân</Dropdown.Item>
+                                            <Dropdown.Item onClick={handleLogout}>Đăng xuất</Dropdown.Item>
+                                        </Dropdown.Menu>
+                                    </Dropdown>
                                 </div>
                             )
                         }
@@ -162,6 +165,6 @@ export default function Header({ isHome }) {
                     </Navbar>
                 </div>
             </div>
-        </div >
+        </div>
     )
 }
