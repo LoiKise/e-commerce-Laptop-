@@ -11,7 +11,7 @@ import DashboardCheckboxList from '../Utils/DashboardCheckboxList';
 
 
 export default function DashboardProductsCreate(props) {
-
+    const [products, setProducts] = useState([]);
     const { enqueueSnackbar } = useSnackbar();
     const createForm = useRef();
     const typeSale = [
@@ -28,7 +28,13 @@ export default function DashboardProductsCreate(props) {
         quantity: "",
         category: "",
         sale: false,
-
+        ram: "",
+        color: "",
+        cpu: "",
+        stograge: "",
+        screen: "",
+        vga: "",
+        weight: "",
     });
 
     const [img, setImg] = useState()
@@ -62,21 +68,28 @@ export default function DashboardProductsCreate(props) {
         fd.append("percentSale", data.percentSale)
         fd.append("quantity", data.quantity)
         fd.append("category", data.category)
-        fd.append("sale", data.sale)
+        fd.append("weight", data.weight)
+        fd.append("ram", data.ram)
+        fd.append("color", data.color)
+        fd.append("cpu", data.cpu)
+        fd.append("stograge", data.stograge)
+        fd.append("screen", data.screen)
+        fd.append("vga", data.vga)
+
         const createProduct = async () => {
             await requestAPI("/products/addProduct", "POST", fd).then(() => {
                 props.setCloseCreateFunc(false);
-                enqueueSnackbar("Tạo đơn thành công", {
-                    persist: false,
-                    variant: "success",
-                    preventDuplicate: true,
-                    autoHideDuration: 3000,
-                });
-
+                if (window.location.reload()) {
+                    enqueueSnackbar("Tạo đơn thành công", {
+                        persist: false,
+                        variant: "success",
+                        preventDuplicate: true,
+                        autoHideDuration: 3000,
+                    });
+                }
             })
         }
         createProduct();
-        console.log("loi", fd)
     }
 
     return (
@@ -109,12 +122,71 @@ export default function DashboardProductsCreate(props) {
                             objectKey={"productName"}
                         />
                         <DashboardTextInput2
+                            textType={"text"}
+                            title={"Ram"}
+                            isRequire={true}
+                            data={data}
+                            setData={setData}
+                            objectKey={"ram"}
+                        />
+                        <DashboardTextInput2
+                            textType={"text"}
+                            title={"Màu sắc"}
+                            isRequire={true}
+                            data={data}
+                            setData={setData}
+                            objectKey={"color"}
+                        />
+                        <DashboardTextInput2
+                            textType={"text"}
+                            title={"Cpu"}
+                            isRequire={true}
+                            data={data}
+                            setData={setData}
+                            objectKey={"cpu"}
+                        />
+                        <DashboardTextInput2
+                            textType={"text"}
+                            title={"Bộ nhớ"}
+                            isRequire={true}
+                            data={data}
+                            setData={setData}
+                            objectKey={"stograge"}
+                        />
+                        <DashboardTextInput2
+                            textType={"text"}
+                            title={"Màn hình"}
+                            isRequire={true}
+                            data={data}
+                            setData={setData}
+                            objectKey={"screen"}
+                        />
+                        <DashboardTextInput2
+                            textType={"text"}
+                            title={"Card đồ họa"}
+                            isRequire={true}
+                            data={data}
+                            color="info"
+                            setData={setData}
+                            objectKey={"vga"}
+                        />
+                        <DashboardTextInput2
+                            title={"Cân nặng"}
+                            textType='number'
+                            isRequire={true}
+                            data={data}
+                            color="success"
+                            setData={setData}
+                            objectKey={"weight"}
+                            variant="outlined"
+                        />
+                        <DashboardTextInput2
                             title="Giá sản phẩm "
                             variant="outlined"
+                            textType='number'
                             size="small"
-                            textType={"text"}
                             isRequire={true}
-                            color="error"
+                            color="success"
                             style={{ marginBottom: "30px" }}
                             data={data}
                             setData={setData}
@@ -125,7 +197,7 @@ export default function DashboardProductsCreate(props) {
                             variant="outlined"
                             size="small"
                             isRequire={true}
-                            color="info"
+                            color="success"
                             style={{ marginBottom: "30px" }}
                             data={data}
                             setData={setData}
@@ -145,6 +217,7 @@ export default function DashboardProductsCreate(props) {
                         <DashboardTextInput2
                             title="Phần trăm sale"
                             variant="outlined"
+                            textType='number'
                             size="small"
                             color="success"
                             style={{ marginBottom: "30px" }}
@@ -155,6 +228,7 @@ export default function DashboardProductsCreate(props) {
                         <DashboardTextInput2
                             title="Số lượng"
                             variant="outlined"
+                            textType='number'
                             size="small"
                             color="success"
                             style={{ marginBottom: "30px" }}

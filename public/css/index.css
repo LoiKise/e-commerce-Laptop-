@@ -1242,6 +1242,8 @@ a {
   list-style: none;
   display: flex;
   flex-wrap: wrap; }
+  .products:hover {
+    transform: scale(1.09); }
   .products-item {
     width: calc((100% / 4) - 15px);
     background-color: #fff;
@@ -1525,6 +1527,12 @@ a {
 .counter-box {
   flex: 1 1;
   justify-content: space-evenly; }
+  .counter-box .btn {
+    width: 100%;
+    padding: 0px;
+    height: 50px;
+    display: flex;
+    align-items: center; }
   .counter-box .down {
     font-size: 24px; }
   .counter-box .up {
@@ -3881,3 +3889,57 @@ select {
 @media only screen and (max-width: 350px) {
   .admin-login-form input {
     height: 30px; } }
+
+.category {
+  margin-bottom: 150px; }
+  .category .card {
+    height: 300px;
+    width: 220px;
+    background: var(--card);
+    border-radius: 20px;
+    padding: 10px;
+    font-family: sans-serif;
+    display: flex;
+    color: var(--text);
+    flex-direction: column;
+    align-items: flex-start;
+    transition: transform 0.3s; }
+    .category .card img {
+      width: 197px;
+      height: 130px;
+      border-radius: 14px;
+      object-fit: cover;
+      margin-bottom: 20px; }
+    .category .card__title {
+      margin-top: 16px;
+      font-size: 15px;
+      font-weight: 400;
+      transition: color 0.3s; }
+    .category .card__description {
+      margin-top: 5px;
+      display: block;
+      font-size: 15px;
+      opacity: 0.6;
+      transition: color 0.3s; }
+    .category .card__shop {
+      width: 100%;
+      margin-top: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between; }
+      .category .card__shop__price {
+        color: var(--price); }
+      .category .card__shop__action {
+        height: 40px;
+        width: 40px;
+        outline: none;
+        border: none;
+        background: var(--secondary);
+        border-radius: 12px;
+        cursor: pointer;
+        margin-top: auto; }
+        .category .card__shop__action span {
+          color: #fff;
+          font-size: 26px; }
+    .category .card:hover {
+      transform: scale(1.09); }

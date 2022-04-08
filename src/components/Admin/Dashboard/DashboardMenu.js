@@ -4,6 +4,7 @@ import {
     faAngleDown,
     faAngleUp,
     faSignOutAlt,
+
 } from "@fortawesome/free-solid-svg-icons";
 import classNames from "classnames";
 import { Tooltip, Zoom } from "@mui/material";
@@ -55,7 +56,7 @@ export default function DashboardMenu(props) {
                 <div className="db-menu-user" onClick={clickToShowUserOpt}>
                     <div className="flex-center" style={{ padding: "0 5px" }}>
                         <Tooltip
-                            title={props.userInfo?.fullname || " "}
+                            title={props.userInfo?.fullName || " "}
                             placement="right"
                             TransitionComponent={Zoom}
                             disableHoverListener={!hideText}
@@ -69,7 +70,7 @@ export default function DashboardMenu(props) {
                         </Tooltip>
                         {hideText === false && props.userInfo && (
                             <p className="db-menu-name" style={{ marginLeft: "26px" }}>
-                                {props.userInfo?.fullname}
+                                {props.userInfo.fullName}
                             </p>
                         )}
                         {hideText === false && openUserOpt === true && (

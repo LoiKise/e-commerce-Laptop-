@@ -2,72 +2,14 @@ import React, { useEffect, useState } from 'react'
 import ProductList from './ProductList'
 import banner1 from "../../../../assets/Banner/banner_imac_trang_chu.jpg"
 import banner2 from "../../../../assets/Banner/banner_macbook_trang_chu.jpg"
+import requestAPI from "../../../../apis"
 
 export default function Products() {
     const [listImac, setListImac] = useState([])
     const [listLaptop, setListLaptop] = useState([])
     const [listIphone, setListIphone] = useState([])
 
-    const [product] = useState([
-        {
-            name: "CTO/ BTO – iMac 2020 27 inch 5K – 3.6GHz/Core i9/128GB/4TB/Pro 5700 XT",
-            img: "https://picsum.photos/200/300",
-            price: "14000000đ",
-            category: "IMAC",
-            banner: `${banner1}`
-        },
-        {
-            name: "CTO/ BTO – iMac 2020 27 inch 5K – 3.6GHz/Core i9/128GB/4TB/Pro 5700 XT",
-            img: "https://picsum.photos/200/300",
-            price: "14000000đ",
-            category: "IMAC",
-
-        },
-        {
-            name: "CTO/ BTO – iMac 2020 27 inch 5K – 3.6GHz/Core i9/128GB/4TB/Pro 5700 XT",
-            img: "https://picsum.photos/200/300",
-            price: "14000000đ",
-            category: "IMAC"
-        },
-        {
-            name: "CTO/ BTO – iMac 2020 27 inch 5K – 3.6GHz/Core i9/128GB/4TB/Pro 5700 XT",
-            img: "https://picsum.photos/200/300",
-            price: "14000000đ",
-            category: "IMAC"
-        },
-        {
-            name: "CTO/ BTO – iMac 2020 27 inch 5K – 3.6GHz/Core i9/128GB/4TB/Pro 5700 XT",
-            img: "https://picsum.photos/200/300",
-            price: "14000000đ",
-            category: "IMAC"
-        },
-        {
-            name: "CTO/ BTO – iMac 2020 27 inch 5K – 3.6GHz/Core i9/128GB/4TB/Pro 5700 XT",
-            img: "https://picsum.photos/200/300",
-            price: "14000000đ",
-            category: "Iphone"
-        },
-        {
-            name: "CTO/ BTO – iMac 2020 27 inch 5K – 3.6GHz/Core i9/128GB/4TB/Pro 5700 XT",
-            img: "https://picsum.photos/200/300",
-            price: "14000000đ",
-            category: "Iphone"
-        },
-
-        {
-            name: "CTO/ BTO – iMac 2020 27 inch 5K – 3.6GHz/Core i9/128GB/4TB/Pro 5700 XT",
-            img: "https://picsum.photos/200/300",
-            price: "14000000đ",
-            category: "IMAC"
-        },
-        {
-            name: "CTO/ BTO – iMac 2020 27 inch 5K – 3.6GHz/Core i9/128GB/4TB/Pro 5700 XT",
-            img: "https://picsum.photos/200/300",
-            price: "14000000đ",
-            category: "Laptop",
-            banner: `${banner2}`
-        },
-    ])
+    const [product, setProduct] = useState([])
 
 
     // const getListImac = () => {
@@ -101,9 +43,24 @@ export default function Products() {
     //     // eslint-disable-next-line react-hooks/exhaustive-deps
     // }, [])
 
+
+
+    useEffect(() => {
+        requestAPI('/products/getProduct', 'GET', null).then((res) => {
+            if (res.data?.content) {
+                setProduct(res.data?.content)
+            }
+            console.log("ressss", product);
+        }).catch((err) => {
+            console.log(err);
+        })
+
+
+    }, [])
+
     useEffect(() => {
         product.map(item => {
-            if (item.category === 'Iphone') {
+            if (item.category === 'Apple') {
                 return setListIphone(prevIphone => [...prevIphone, item])
             } else if (item.category === 'IMAC') {
                 return setListImac(prevImac => [...prevImac, item])
@@ -112,7 +69,7 @@ export default function Products() {
         })
     }, [product])
 
-
+    console.log({ product });
     return (
         <React.Fragment>
             <ProductList product={listImac} type='IMAC' />

@@ -15,6 +15,7 @@ const LoginPage = lazy(() => import("../views/pages/Login"));
 const CardPage = lazy(() => import("../views/pages/ShoppingCard"))
 const DetailPage = lazy(() => import("../views/pages/Detail/detail.js"))
 const RegisterPage = lazy(() => import("../views/pages/Register"))
+const PageCategory = lazy(() => import('../views/pages/ProductCategory'))
 
 const index = [
     {
@@ -26,15 +27,15 @@ const index = [
             </Suspense>
         ),
     },
-    // {
-    //     path: "/dashboard",
-    //     exact: true,
-    //     main: () => (
-    //         <Suspense key={index} fallback={<Fallback />}>
-    //             <ScreenLoginDashboard />
-    //         </Suspense>
-    //     ),
-    // },
+    {
+        path: "/category",
+        exact: true,
+        main: () => (
+            <Suspense key={index} fallback={<Fallback />}>
+                <PageCategory />
+            </Suspense>
+        ),
+    },
     {
         path: "/dashboard",
         exact: true,
@@ -54,7 +55,7 @@ const index = [
         ),
     },
     {
-        path: "/detail",
+        path: "/detail/:id",
         exact: true,
         main: () => (
             <Suspense key={index} fallback={<Fallback />}>
