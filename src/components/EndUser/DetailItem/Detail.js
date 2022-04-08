@@ -9,6 +9,7 @@ export default function Detail() {
     const path = useLocation();
     const [productDetail, setProductDetail] = useState();
     const { pathname } = path;
+    console.log(pathname)
     const idJob = pathname?.slice(8, pathname.length);
     const [quantity, setQuantity] = useState(1)
 
