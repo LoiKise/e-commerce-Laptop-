@@ -10,14 +10,13 @@ export default function DashboardProuctTable(props) {
     const [table, setTable] = useState([]);
     //const isShowMore = useSelector((state) => state.products.showMore);
     const dispatch = useDispatch();
-
+    console.log(table)
 
     useEffect(() => {
         if (window.innerWidth <= 600) {
             setTable([
                 {
                     headerName: "Mã bài viết",
-
                     renderCell: renderCellExpand,
                     width: 150,
 
@@ -63,6 +62,48 @@ export default function DashboardProuctTable(props) {
                     renderCell: renderCellExpand,
                     width: 150,
 
+                },
+                {
+                    headerName: "Ram",
+                    field: "ram",
+                    renderCell: renderCellExpand,
+                    width: 175,
+                },
+                {
+                    headerName: "Màu sắc",
+                    field: "color",
+                    renderCell: renderCellExpand,
+                    width: 175,
+                },
+                {
+                    headerName: "Cpu",
+                    field: "cpu",
+                    renderCell: renderCellExpand,
+                    width: 175,
+                },
+                {
+                    headerName: "Màn hinh",
+                    field: "screen",
+                    renderCell: renderCellExpand,
+                    width: 150,
+                },
+                {
+                    headerName: "Bộ nhớ",
+                    field: "stograge",
+                    renderCell: renderCellExpand,
+                    width: 150,
+                },
+                {
+                    headerName: "Vga",
+                    field: "vga",
+                    renderCell: renderCellExpand,
+                    width: 150,
+                },
+                {
+                    headerName: "Cân nặng",
+                    field: "weight",
+                    renderCell: renderCellExpand,
+                    width: 150,
                 },
                 {
                     headerName: "Tùy chỉnh",
@@ -123,16 +164,52 @@ export default function DashboardProuctTable(props) {
                     width: 175,
 
                 },
-                {
-                    headerName: "Hãng sản phẩm",
-                    field: "category",
-                    renderCell: renderCellExpand,
-                    width: 150,
 
-                },
                 {
                     headerName: "Giảm giá",
                     field: "sale",
+                    renderCell: renderCellExpand,
+                    width: 150,
+                },
+                {
+                    headerName: "Ram",
+                    field: "ram",
+                    renderCell: renderCellExpand,
+                    width: 175,
+                },
+                {
+                    headerName: "Màu sắc",
+                    field: "color",
+                    renderCell: renderCellExpand,
+                    width: 175,
+                },
+                {
+                    headerName: "Cpu",
+                    field: "cpu",
+                    renderCell: renderCellExpand,
+                    width: 175,
+                },
+                {
+                    headerName: "Màn hinh",
+                    field: "screen",
+                    renderCell: renderCellExpand,
+                    width: 150,
+                },
+                {
+                    headerName: "Bộ nhớ",
+                    field: "stograge",
+                    renderCell: renderCellExpand,
+                    width: 150,
+                },
+                {
+                    headerName: "Vga",
+                    field: "vga",
+                    renderCell: renderCellExpand,
+                    width: 150,
+                },
+                {
+                    headerName: "Cân nặng",
+                    field: "weight",
                     renderCell: renderCellExpand,
                     width: 150,
                 },

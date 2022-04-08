@@ -1,41 +1,39 @@
 import React, { useState } from 'react'
 
-export default function DetailTop() {
-    const [quantity, setQuantity] = useState(1)
+export default function DetailTop({ detailItem }) {
+
 
     return (
         <div className='container'>
             <div className='detail'>
                 <div className='detail-img'>
-                    <img src="https://macstores.vn/wp-content/uploads/2021/10/macbook-pro-16-inch-space-gray-m1-pro.jpg" alt="mac" />
+                    <img src={detailItem?.img} alt="mac" />
                 </div>
                 <div className='detail-infor'>
                     <div className='detail-infor-title'>
-                        <h2>MUHP2 Option – MacBook Pro 2019 13 inch – (Gray/i7/256GB) – New</h2>
+                        <h2>{detailItem?.productName}</h2>
                     </div>
                     <div className='detail-infor-description'>
                         <ul>
-                            <li>Tình trạng: <span>New, Mới Nguyên Seal, Chưa Active</span></li>
-                            <li>Màu: <span>Xám (Space Gray)</span></li>
-                            <li>CPU: <span>Quad-core i7-1.7GHz (i5-8557U, 8MB cache, up to 4.5GHz)</span></li>
-                            <li>Ram: <span>8GB 2133MHz LPDDR3 memory</span></li>
-                            <li>Storage: <span>256GB on-board SSD</span></li>
-                            <li>Màn hình: <span>13.3 inch Retina with True Tone (2650×1600)</span></li>
-                            <li>VGA: <span> Intel Iris Plus Graphics 645</span></li>
-                            <li>Interface: <span>Two Thunderbolt 3 (USB-Type C)</span></li>
-                            <li>Trọng Lượng: <span> 1.37Kg</span></li>
+                            <li>Tình trạng: <span>{detailItem?.detail}</span></li>
+                            <li>Màu: <span>{detailItem?.color}</span></li>
+                            <li>CPU: <span>{detailItem?.cpu}</span></li>
+                            <li>Ram: <span>{detailItem?.ram}</span></li>
+                            <li>Storage: <span>{detailItem?.stograge}</span></li>
+                            <li>Màn hình: <span>{detailItem?.screen}</span></li>
+                            <li>VGA: <span>{detailItem?.vga}</span></li>
+                            <li>Trọng Lượng: <span>{detailItem?.weight}</span></li>
                         </ul>
                     </div>
                     <div className='detail-infor-price'>
-                        <span>33.500.000đ</span>
+                        <span>{`${detailItem?.price.toString()
+                            .replace(/\B(?=(\d{3})+(?!\d))/g, ".")} VNĐ`}</span>
                     </div>
                     <div className='detail-infor-cart counter'>
                         <div className='d-flex counter-box'>
-                            <span className="down">-</span>
-                            <input type="text" value="1" />
-                            <span className="up">+</span>
+                            <span className='btn btn-danger'><ion-icon name="cart-outline"></ion-icon>Thêm vào giỏ hàng</span>
                         </div>
-                        {/* <button><ion-icon name="cart-outline"></ion-icon>Thêm vào giỏ hàng</button> */}
+
                         <button class="button">
                             <span class="button__text">
                                 Mua Hàng

@@ -16,7 +16,6 @@ export default function Header({ isHome }) {
     const [colorChange, setColorChange] = useState(false)
 
     const user = useSelector((state) => state.user.user);
-    console.log({ user })
     const history = useHistory();
     const dispatch = useDispatch();
 
@@ -96,7 +95,7 @@ export default function Header({ isHome }) {
         } else {
             dispatch(logout());
         }
-    }, []);
+    }, [dispatch]);
 
     return (
         <div className='header w-100'>

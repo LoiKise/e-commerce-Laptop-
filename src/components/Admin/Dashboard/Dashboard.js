@@ -4,11 +4,14 @@ import DashboardMenu from "./DashboardMenu";
 import {
     faHome,
     faUsers,
+    faWineBottle,
+    faTractor
 } from "@fortawesome/free-solid-svg-icons";
 import { withRouter } from "react-router-dom";
 import { useHistory } from "react-router";
 import { useSnackbar } from "notistack";
 import { ACCESS_TOKEN } from "../../../utils/constant";
+import requestAPI from "../../../apis";
 function Dashboard() {
     const menuItems = [
         {
@@ -19,22 +22,17 @@ function Dashboard() {
         {
             id: "2",
             name: "Sản phẩm",
-            icon: faUsers,
+            icon: faWineBottle,
         },
         {
             id: "3",
-            name: "Loại sản phẩm",
-            icon: faUsers,
-        },
-        {
-            id: "4",
             name: "Người dùng",
             icon: faUsers,
         },
         {
-            id: "5",
+            id: "4",
             name: "Đơn đặt hàng",
-            icon: faUsers,
+            icon: faTractor,
         },
 
     ];
@@ -46,8 +44,6 @@ function Dashboard() {
     const [userInfo, setUserInfo] = useState(null);
     const history = useHistory();
     const { enqueueSnackbar } = useSnackbar();
-    // const { enqueueSnackbar } = useSnackbar();
-    //call api get info user
     const setTabIdOnClick = (id) => {
         setTabId(id);
     };
@@ -63,11 +59,24 @@ function Dashboard() {
                 autoHideDuration: 3000,
             })
         }
-    })
+        else if (ACCESS_TOKEN()) {
+            requestAPI('/user/profile', 'GET', null).then((res) => {
+                if (res) {
+                    console.log(res.data.content.fullName);
+                    if (res.data?.content) {
+                        setUserInfo(res.data?.content)
+                    }
+                }
+            })
+        }
+
+    }, [])
 
     useEffect(() => {
         verifyToken()
     }, [verifyToken])
+
+
 
     const setOpenMenuOnClick = () => {
         if (window.innerWidth <= 1110) {

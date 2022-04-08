@@ -12,6 +12,7 @@ import CustomNoRowsOverlay from "../Utils/CustomNoRowsOverlay"
 import CustomLoadingOverlay from "../Utils/CustomLoadingOverlay"
 import DashboardDialogConfirm from "../Utils/DashboardDialogConfirm";
 import requestAPI from "../../../../apis"
+import useQuery from '../../../../helpers/useQuery';
 
 export default function DashboardProductTable(props) {
 
@@ -29,21 +30,56 @@ export default function DashboardProductTable(props) {
 
     useEffect(() => {
         setIsLoading(true);
-        const getProduct = async () => {
-            await requestAPI('/products/getProduct', "GET", null).then((res) => {
-                // console.log('cac', res.data.content[0]);
-                setProducts(res.data.content)
-                setIsLoading(false);
-            }).catch((err) => {
-                console.log(err)
-            })
-        }
-        getProduct()
+        requestAPI("/products/getProduct", "GET", null).then((res) => {
+            // console.log('cac', res.data.content[0]);
+            setProducts(res.data.content)
+            setIsLoading(false);
+        }).catch((err) => {
+            console.log(err)
+        })
     }, [])
 
+    const deleteOnClick = () => {
+        if (selection.length > 0) {
+            console.log(selection[0])
 
+            RemoveProduct(selection)
+                .then((res) => {
+                    if (res) {
+                        enqueueSnackbar("Xóa hóa đơn thành công", {
+                            persist: false,
+                            variant: "success",
+                            preventDuplicate: true,
+                            autoHideDuration: 3000,
+                        });
+                        requestAPI("/products/getProduct", "GET", null).then((res) => {
+                            // console.log('cac', res.data.content[0]);
+                            setProducts(res.data.content)
+                            setIsLoading(false);
+                        }).catch((err) => {
+                            console.log(err)
+                        })
+                    }
+                })
+                .catch((err) => console.log(err));
+        } else {
+            enqueueSnackbar("Vui lòng chọn hóa đơn muốn xóa", {
+                persist: false,
+                variant: "error",
+                preventDuplicate: true,
+                autoHideDuration: 3000,
+            });
+        }
 
+    }
 
+    const RemoveProduct = async (id) => {
+
+        const data = await requestAPI(`/products/deleteProduct/${id}`, "DELETE", id);
+        return data
+    }
+
+    // const deleteOnClick
 
     const handleOpenDialogDelete = () => {
         setOpen(true);
@@ -61,14 +97,15 @@ export default function DashboardProductTable(props) {
             <div className="top-location-container">
                 <div className="headerbox-header">
                     <p>{props.title}</p>
+                    {/* <button onClick={RemoveProduct}>Xóa test</button> */}
                 </div>
                 <div className="topfive-content flex-col">
                     <DashboardControl
                         addController={props.setOpenCreateFunc}
-                        // deleteController={deleteOnClick}
+                        deleteController={deleteOnClick}
                         // searchOnChange={searchOnChange}
                         // searchController={searchOnSubmit}
-                        //handleOpenDialogDelete={handleOpenDialogDelete}
+                        handleOpenDialogDelete={handleOpenDialogDelete}
                         placeholderSearch={"Tìm kiếm sản phẩm"}
                     />
                     <div style={{ height: 400, width: "100%" }}>
@@ -95,8 +132,9 @@ export default function DashboardProductTable(props) {
                     <DashboardDialogConfirm
                         open={open}
                         handleCloseDialogDelete={handleCloseDialogDelete}
-                    //handleDelete={deleteOnClick}
+                        handleDelete={deleteOnClick}
                     />
+
                 </div>
             </div>
         </div>
