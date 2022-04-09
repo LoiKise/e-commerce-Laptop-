@@ -1,7 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react'
-import { useSelector } from "react-redux";
-import { useHistory } from "react-router";
-import { useDispatch } from "react-redux";
+
 import { useSnackbar } from "notistack";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import DashboardControl from '../Utils/DashboardControl'
@@ -12,7 +10,7 @@ import CustomNoRowsOverlay from "../Utils/CustomNoRowsOverlay"
 import CustomLoadingOverlay from "../Utils/CustomLoadingOverlay"
 import DashboardDialogConfirm from "../Utils/DashboardDialogConfirm";
 import requestAPI from "../../../../apis"
-import useQuery from '../../../../helpers/useQuery';
+
 
 export default function DashboardProductTable(props) {
 

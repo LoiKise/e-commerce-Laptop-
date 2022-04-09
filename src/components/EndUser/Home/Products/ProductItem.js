@@ -1,8 +1,32 @@
 import React from 'react'
 import product1 from "../../../../assets/Banner/product1.jpg"
 import { Link } from "react-router-dom";
+import requestAPI from '../../../../apis';
+import { useSnackbar } from 'notistack';
+import { useLocation } from 'react-router-dom';
 
 function ProductItem({ item }) {
+    const { enqueueSnackbar } = useSnackbar();
+
+
+    const addToCardOnClick = (e) => {
+        const id = item._id
+        const addToCart = async (id) => {
+            await requestAPI(`/user/addCart/${id}`, "POST").then((res) => {
+                if (res) {
+                    enqueueSnackbar("Đã thêm vào giỏ hàng thành công", {
+                        persist: false,
+                        variant: "success",
+                        preventDuplicate: true,
+                        autoHideDuration: 3000,
+                    })
+                }
+            })
+        }
+        addToCart(id)
+    }
+
+
 
     return (
 
@@ -21,7 +45,7 @@ function ProductItem({ item }) {
                         .replace(/\B(?=(\d{3})+(?!\d))/g, ".")} VNĐ`}</p>
                 </div>
                 <div className='products-add'>
-                    <button>Thêm vào giỏ hàng</button>
+                    <button onClick={addToCardOnClick}>Thêm vào giỏ hàng</button>
                 </div>
             </div>
         </li>

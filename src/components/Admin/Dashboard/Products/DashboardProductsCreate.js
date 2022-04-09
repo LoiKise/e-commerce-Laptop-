@@ -4,8 +4,6 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import DashboardTextInput2 from "../Utils/DashboardTextInput2";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import requestAPI from '../../../../apis';
-import { Upload } from "@aws-sdk/lib-storage";
-import S3 from 'react-aws-s3';
 import DashboardCheckboxList from '../Utils/DashboardCheckboxList';
 
 

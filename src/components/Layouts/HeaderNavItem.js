@@ -6,9 +6,9 @@ import { Link } from "react-router-dom";
 export default function HeaderNavItem({ headerItem }) {
 
 
-    // useEffect(() => {
-    //     window.scrollTo(0, 0);
-    // }, [pathname]);
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
 
 
