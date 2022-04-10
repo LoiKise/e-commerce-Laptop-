@@ -18,7 +18,7 @@ function ProductItem({ item }) {
             await requestAPI(`/user/addCart/${id}`, "POST").then((res) => {
                 if (res) {
                     dispatch(quantity())
-                    toast.success("Đã thêm sản phẩm vào giò hàng", {
+                    toast.success("Đã thêm sản phẩm vào giỏ hàng", {
                         position: "top-center",
                         autoClose: 3000,
                     })
