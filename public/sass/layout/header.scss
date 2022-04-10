@@ -210,3 +210,18 @@
   padding: 4px;
   margin-right: 10px;
 }
+
+.header__nav {
+  width: 100%;
+}
+
+.header-bottom {
+  background-color: #030303;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* gap: 63px; */
+  width: 100%;
+  justify-content: space-between;
+  margin-bottom: 50px;
+}

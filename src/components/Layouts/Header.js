@@ -10,15 +10,23 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout, profile } from '../../data/userSlice';
 import { toast } from 'react-toastify';
 import { color } from '@mui/system';
+import requestAPI from "../../apis"
+import { quantity } from '../../data/quantityCartSlice';
 
-
-export default function Header({ isHome }) {
+function Header({ isHome }) {
 
     const [colorChange, setColorChange] = useState(false)
-
-    const user = useSelector((state) => state.user.user);
+    const user = useSelector((state) => state.user.user)
+    const quantityCart = useSelector((state) => state.quantityCart.quantityCart);
     const history = useHistory();
     const dispatch = useDispatch();
+
+
+    // useEffect(() => {
+    //     dispatch(quantity())
+    // }, [dispatch])
+
+
 
     const handleLogout = () => {
         dispatch(logout());
@@ -123,7 +131,12 @@ export default function Header({ isHome }) {
                                 style={{ backgroundColor: 'transparent', width: '35px', height: '35px' }}
                                 color="black"
                                 name="notifications-circle-sharp"></ion-icon>
-                            <p>1</p>
+                            {
+                                quantityCart ? (
+                                    <p>{quantityCart.length}</p>
+                                ) : ''
+                            }
+
                         </Link>
                     </div>
                     <div className='chosse-account'>
@@ -172,6 +185,7 @@ export default function Header({ isHome }) {
                     </Navbar>
                 </div>
             </div>
-        </div >
+        </div>
     )
 }
+export default Header;

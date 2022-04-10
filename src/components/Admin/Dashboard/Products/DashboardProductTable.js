@@ -30,7 +30,7 @@ export default function DashboardProductTable(props) {
         setIsLoading(true);
         requestAPI("/products/getProduct", "GET", null).then((res) => {
             // console.log('cac', res.data.content[0]);
-            setProducts(res.data.content)
+            setProducts(res.data?.content)
             setIsLoading(false);
         }).catch((err) => {
             console.log(err)
