@@ -32,7 +32,7 @@
         color: #fff;
         width: 15px;
         height: 25px;
-        background-color: #04cffd;
+        background-color: #000000;
         border: 2px solid #fff;
         border-radius: 0px;
         flex: 0 0 35px;
@@ -47,8 +47,24 @@
         cursor: pointer;
       }
       .chosse-card {
+        position: relative;
         display: flex;
         align-items: center;
+        a {
+          color: #000;
+        }
+        p {
+          position: absolute;
+          width: 12px;
+          height: 20px;
+          border-radius: 200%;
+          background-color: #ff0000;
+          top: 0%;
+          left: 55%;
+          font-size: 13px;
+          color: #ffff;
+          padding: 2px;
+        }
         .hydrated {
           color: #fff;
           width: 25px;
@@ -181,4 +197,31 @@
 }
 .show > .btn-primary.dropdown-toggle:focus {
   box-shadow: none !important;
+}
+.header-top-chosse .chosse-card .hydrated {
+  color: #fff;
+  width: 30px;
+  height: 30px;
+  background-color: none !important;
+  border: none !important;
+  border-radius: 0px;
+  flex: -1 0 35px;
+  border-radius: 5px;
+  padding: 4px;
+  margin-right: 10px;
+}
+
+.header__nav {
+  width: 100%;
+}
+
+.header-bottom {
+  background-color: #030303;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* gap: 63px; */
+  width: 100%;
+  justify-content: space-between;
+  margin-bottom: 50px;
 }

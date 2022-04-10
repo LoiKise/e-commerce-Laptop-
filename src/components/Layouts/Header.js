@@ -9,15 +9,24 @@ import { ACCESS_TOKEN } from "../../utils/constant"
 import { useDispatch, useSelector } from "react-redux";
 import { logout, profile } from '../../data/userSlice';
 import { toast } from 'react-toastify';
+import { color } from '@mui/system';
+import requestAPI from "../../apis"
+import { quantity } from '../../data/quantityCartSlice';
 
-
-export default function Header({ isHome }) {
+function Header({ isHome }) {
 
     const [colorChange, setColorChange] = useState(false)
-
-    const user = useSelector((state) => state.user.user);
+    const user = useSelector((state) => state.user.user)
+    const quantityCart = useSelector((state) => state.quantityCart.quantityCart);
     const history = useHistory();
     const dispatch = useDispatch();
+
+
+    // useEffect(() => {
+    //     dispatch(quantity())
+    // }, [dispatch])
+
+
 
     const handleLogout = () => {
         dispatch(logout());
@@ -45,7 +54,8 @@ export default function Header({ isHome }) {
         {
             name: 'Trang chủ',
             link: '/',
-            icon: 'home-outline'
+            icon: 'home-outline',
+
         },
         {
             name: 'MacBook',
@@ -100,6 +110,8 @@ export default function Header({ isHome }) {
         }
     }, [dispatch]);
 
+
+
     return (
         <div className='header w-100'>
             <div className='header-top '>
@@ -114,9 +126,17 @@ export default function Header({ isHome }) {
                 </div>
                 <div className='header-top-chosse'>
                     <div className='chosse-card'>
-                        <ion-icon name="card-outline"></ion-icon>
                         <Link to="/Card">
-                            <span>Giỏ Hàng</span>
+                            <ion-icon
+                                style={{ backgroundColor: 'transparent', width: '35px', height: '35px' }}
+                                color="black"
+                                name="notifications-circle-sharp"></ion-icon>
+                            {
+                                quantityCart ? (
+                                    <p>{quantityCart.length}</p>
+                                ) : ''
+                            }
+
                         </Link>
                     </div>
                     <div className='chosse-account'>
@@ -168,3 +188,4 @@ export default function Header({ isHome }) {
         </div>
     )
 }
+export default Header;

@@ -1,7 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react'
-import { useSelector } from "react-redux";
-import { useHistory } from "react-router";
-import { useDispatch } from "react-redux";
+
 import { useSnackbar } from "notistack";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import DashboardControl from '../Utils/DashboardControl'
@@ -12,7 +10,7 @@ import CustomNoRowsOverlay from "../Utils/CustomNoRowsOverlay"
 import CustomLoadingOverlay from "../Utils/CustomLoadingOverlay"
 import DashboardDialogConfirm from "../Utils/DashboardDialogConfirm";
 import requestAPI from "../../../../apis"
-import useQuery from '../../../../helpers/useQuery';
+
 
 export default function DashboardProductTable(props) {
 
@@ -32,7 +30,7 @@ export default function DashboardProductTable(props) {
         setIsLoading(true);
         requestAPI("/products/getProduct", "GET", null).then((res) => {
             // console.log('cac', res.data.content[0]);
-            setProducts(res.data.content)
+            setProducts(res.data?.content)
             setIsLoading(false);
         }).catch((err) => {
             console.log(err)
