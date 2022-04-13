@@ -16,6 +16,7 @@ function ProductItem({ item }) {
         const id = item._id
         const addToCart = async (id) => {
             await requestAPI(`/user/addCart/${id}`, "POST").then((res) => {
+
                 if (res) {
                     dispatch(quantity())
                     toast.success("Đã thêm sản phẩm vào giỏ hàng", {
@@ -23,6 +24,12 @@ function ProductItem({ item }) {
                         autoClose: 3000,
                     })
                 }
+            }).catch((error) => {
+
+                toast.error(`${error.response.data.content}`, {
+                    position: "top-center",
+                    autoClose: 3000,
+                })
             })
         }
         addToCart(id)

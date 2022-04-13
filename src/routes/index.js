@@ -16,6 +16,7 @@ const CardPage = lazy(() => import("../views/pages/ShoppingCard"))
 const DetailPage = lazy(() => import("../views/pages/Detail/detail.js"))
 const RegisterPage = lazy(() => import("../views/pages/Register"))
 const PageCategory = lazy(() => import('../views/pages/ProductCategory'))
+const ProfilePage = lazy(() => import('../views/pages/Profile'))
 
 const index = [
     {
@@ -35,6 +36,15 @@ const index = [
                 <PageCategory />
             </Suspense>
         ),
+    },
+    {
+        path: "/profile",
+        exact: true,
+        main: () => (
+            <Suspense key={index} fallback={<Fallback />}>
+                <ProfilePage />
+            </Suspense>
+        )
     },
     {
         path: "/dashboard",

@@ -2,7 +2,8 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import requestAPI from "../apis";
 
 const initialState = {
-    quantityCart: []
+    quantityCart: [],
+    productCart: []
 };
 
 
@@ -15,15 +16,15 @@ export const quantity = createAsyncThunk("user/profile", async (data, thunkAPI) 
     }
 });
 
-const handleQuantityCart = (state, action) => {
-    state.quantityCart = action.payload.content.cart
-}
 
 export const quantityCartSlice = createSlice({
     name: "quantityCart",
     initialState,
     extraReducers: {
-        [quantity.fulfilled]: handleQuantityCart,
+        [quantity.fulfilled]: (state, action) => {
+            state.productCart = action.payload.content.cart
+            state.quantityCart = action.payload.content.cart
+        },
     }
 });
 

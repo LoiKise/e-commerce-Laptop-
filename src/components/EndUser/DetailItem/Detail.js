@@ -9,10 +9,7 @@ export default function Detail() {
     const path = useLocation();
     const [productDetail, setProductDetail] = useState();
     const { pathname } = path;
-
     const idJob = pathname?.slice(8, pathname.length);
-    // const [quantity, setQuantity] = useState(1)
-    console.log('chitiet', idJob)
 
     useEffect(() => {
         getItemJOb(idJob);
@@ -26,7 +23,6 @@ export default function Detail() {
             })
             .catch((err) => console.log(err.message));
     };
-
 
     return (
         <div>

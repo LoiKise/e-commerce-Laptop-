@@ -1,87 +1,5 @@
-// .shooping {
-//   margin-top: 35px;
-//   width: 100%;
-//   margin-bottom: 50px;
-//   &-card {
-//     height: 35px;
-//     border-bottom: 1px solid #000;
-//     &-products {
-//       min-width: 200px;
-//     }
-//   }
-//   tbody {
-//     border-bottom: 1px solid;
-//     padding-bottom: 50px;
-//   }
-//   .card-body {
-//     &-img {
-//       padding: 15px 0;
-//       img {
-//         border: 1px solid #ccc;
-//         display: block;
-//         padding: 10px;
-//         width: 100px;
-//         height: 100px;
-//         border-radius: 5px;
-//       }
-//     }
-//     &-quantity {
-//       input {
-//         width: 50px;
-//       }
-//       transform: translate(0px, 20%);
-//     }
-//     &-name {
-//       transform: translate(0px, 20%);
-//       span {
-//         font-weight: 500;
-//       }
-//     }
-//     &-price {
-//       transform: translate(0px, 20%);
-//       color: #ff0000;
-//       span {
-//         font-weight: 500;
-//       }
-//     }
-//     &-subtotal {
-//       transform: translate(0px, 20%);
-//       span {
-//         font-weight: 500;
-//       }
-//     }
-//     &-remove {
-//       cursor: pointer;
-//       transform: translate(0px, 20%);
-//     }
-//   }
-// }
-
-// .card-totals {
-//   display: flex;
-//   width: 100%;
-//   align-items: flex-end;
-//   flex-direction: column;
-//   margin-top: 50px;
-//   h2 {
-//     font-size: 22px;
-//     font-weight: 500;
-//   }
-//   &-infor {
-//     display: flex;
-//     gap: 15px;
-//   }
-//   &-button {
-//     display: flex;
-//     gap: 20px;
-//     margin-top: 30px;
-//   }
-// }
-// .card-collaterals {
-//   margin-bottom: 60px;
-// }
 .shopping-cart {
-  width: 60%;
+  width: 100%;
   height: max-content;
   margin: 80px auto;
   background: #ffffff;
@@ -159,6 +77,11 @@
   padding-top: 10px;
   margin-right: 60px;
   width: 115px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .description span {
@@ -170,11 +93,24 @@
 
 .description span:first-child {
   margin-bottom: 5px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
+
 .description span:last-child {
   font-weight: 300;
   margin-top: 8px;
   color: #86939e;
+
+  display: -webkit-box;
+
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .quantity {
   padding-top: 20px;
@@ -217,31 +153,7 @@ input:focus {
   color: #43484d;
   font-weight: 300;
 }
-@media (max-width: 800px) {
-  .shopping-cart {
-    width: 100%;
-    height: auto;
-    overflow: hidden;
-  }
-  .item {
-    height: auto;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  .image img {
-    width: 50%;
-  }
-  .image,
-  .quantity,
-  .description {
-    width: 100%;
-    text-align: center;
-    margin: 6px 0;
-  }
-  .buttons {
-    margin-right: 20px;
-  }
-}
+
 .title {
   height: 60px;
   border-bottom: 1px solid #e1e8ee;
