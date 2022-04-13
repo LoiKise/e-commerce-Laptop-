@@ -22,10 +22,6 @@ function Header({ isHome }) {
     const dispatch = useDispatch();
 
 
-    // useEffect(() => {
-    //     dispatch(quantity())
-    // }, [dispatch])
-
 
 
     const handleLogout = () => {
@@ -159,7 +155,7 @@ function Header({ isHome }) {
                                             <Dropdown.Item>
                                                 {user.fullName}
                                             </Dropdown.Item>
-                                            <Dropdown.Item href="#/action-2">Trang cá nhân</Dropdown.Item>
+                                            <Dropdown.Item href='/profile'>Trang cá nhân</Dropdown.Item>
                                             <Dropdown.Item onClick={handleLogout}>Đăng xuất</Dropdown.Item>
                                         </Dropdown.Menu>
                                     </Dropdown>

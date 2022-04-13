@@ -14,6 +14,8 @@ export default function Product() {
 
     if (categoryQuery === "undefined") {
         history.push('/')
+    } else {
+
     }
 
     useEffect(() => {
@@ -24,7 +26,6 @@ export default function Product() {
             .then((res) => {
                 if (res.data.content) {
                     setCategory(res.data.content);
-                    console.log(res.data.content)
                 }
             })
             .catch((err) => console.log(err.message));
